@@ -1,1 +1,1 @@
-# next-champ-ai
+# champredict-ai
