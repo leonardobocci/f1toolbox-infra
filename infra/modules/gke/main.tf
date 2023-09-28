@@ -9,6 +9,8 @@ resource "google_container_cluster" "gke_orchestration_ingestion_cluster" {
   node_config {
     spot = true
   }
+
+  depends_on = [google_project_service.enable_gke]
 }
 
 provider "helm" {
@@ -20,6 +22,8 @@ resource "helm_release" "airbyte" {
     repository = "https://airbytehq.github.io/helm-charts"
     chart = "airbyte"
     version = "0.49.1"
+
+    depends_on = [google_container_cluster.gke_orchestration_ingestion_cluster]
 }
 
 #Add the Dagster installation here as well
