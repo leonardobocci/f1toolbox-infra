@@ -6,7 +6,9 @@ resource "google_container_cluster" "gke_orchestration_ingestion_cluster" {
   name     = "orchestration_ingestion"
   location = var.cluster_zone
   enable_autopilot = true
-  spot = true
+  node_config {
+    spot = true
+  }
 }
 
 provider "helm" {
