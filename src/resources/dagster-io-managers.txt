@@ -1,0 +1,2 @@
+In case of read/write operations that are shared by multiple assets (eg. writing specific format to storage buckets), it can be good to have an I/O manager.
+The I/O manager separates business logic (code in the assets folder) from boilerplate interaction (in resources folder)
