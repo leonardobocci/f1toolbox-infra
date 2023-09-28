@@ -26,4 +26,11 @@ resource "helm_release" "airbyte" {
     depends_on = [google_container_cluster.gke_orchestration_ingestion_cluster]
 }
 
-#Add the Dagster installation here as well
+resource "helm_release" "dagster" {
+    name = "dagster"
+    repository = "https://dagster-io.github.io/helm"
+    chart = "dagster"
+    version = "1.4.16"
+
+    depends_on = [helm_release.airbyte]
+}
