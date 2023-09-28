@@ -7,3 +7,5 @@ variable "zone" {
 }
 
 variable "project" { }	
+
+variable "GOOGLE_CREDENTIALS" { }
