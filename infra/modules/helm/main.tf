@@ -19,6 +19,4 @@ resource "helm_release" "dagster" {
   repository = "https://dagster-io.github.io/helm"
   chart      = "dagster"
   version    = "1.4.16"
-
-  depends_on = [helm_release.airbyte]
 }
