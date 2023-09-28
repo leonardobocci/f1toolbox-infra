@@ -10,4 +10,10 @@ resource "google_storage_bucket" "bronze_bucket" {
   depends_on = [ google_project_service.enable_storage ]
 }
 
-#ADD SILVER AND GOLD BUCKETS HERE
+resource "google_storage_bucket" "silver_bucket" {
+  name = "silver-transformed-zone"
+  location = var.bucket_region
+  force_destroy = true
+
+  depends_on = [ google_project_service.enable_storage ]
+}
