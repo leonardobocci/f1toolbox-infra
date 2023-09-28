@@ -29,3 +29,9 @@ module "dataproc" {
 module "gke" {
   source = "./modules/gke"
 }
+
+module "helm" {
+  source = "./modules/helm"
+
+  depends_on = [module.gke]
+}
