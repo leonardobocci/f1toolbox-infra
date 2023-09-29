@@ -3,7 +3,7 @@ resource "google_project_service" "enable_storage" {
 }
 
 resource "google_storage_bucket" "landing_layer" {
-  name = "landing-layer"
+  name = "champredict-landing-layer"
   location = var.bucket_region
   force_destroy = true
 
@@ -11,7 +11,7 @@ resource "google_storage_bucket" "landing_layer" {
 }
 
 resource "google_storage_bucket" "transformed_layer" {
-  name = "transformed-layer"
+  name = "champredict-transformed-layer"
   location = var.bucket_region
   force_destroy = true
 
