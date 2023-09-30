@@ -20,6 +20,7 @@ provider "google" {
 
 module "storage" {
   source = "./modules/storage"
+  project = var.project
 }
 
 module "dataproc" {
@@ -32,4 +33,5 @@ module "gke" {
 
 module "auth" {
   source = "./modules/auth"
+  project = var.project
 }
