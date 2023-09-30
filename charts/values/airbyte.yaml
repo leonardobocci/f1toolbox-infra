@@ -1,0 +1,8 @@
+global:
+  state:
+    storage:
+      type: "GCS"
+  storage:
+    type: "GCS"
+  minio:
+    enabled: false
