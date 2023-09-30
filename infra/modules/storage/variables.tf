@@ -7,3 +7,5 @@ variable "airbyte_bucket_role" {
 }
 
 variable "project" { }
+
+variable "airbyte_auth_service_account_email" {}

@@ -28,5 +28,5 @@ resource "google_storage_bucket" "airbyte_bucket" {
 resource "google_storage_bucket_iam_member" "airbyte_bucket_access" {
   bucket = google_storage_bucket.airbyte_bucket.name
   role   = var.airbyte_bucket_role
-  member = "serviceAccount:${google_service_account.airbyte_service_account.email}"
+  member = "serviceAccount:${var.airbyte_auth_service_account_email}"
 }
