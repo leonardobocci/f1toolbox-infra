@@ -29,3 +29,7 @@ module "dataproc" {
 module "gke" {
   source = "./modules/gke"
 }
+
+module "auth" {
+  source = "./modules/auth"
+}
