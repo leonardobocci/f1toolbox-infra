@@ -15,5 +15,5 @@ resource "google_storage_bucket" "transformed_layer" {
   location = var.bucket_region
   force_destroy = true
 
-  depends_on = [ google_storage_bucket.landing_layer ]
+  depends_on = [ google_storage_bucket.enable_storage ]
 }
