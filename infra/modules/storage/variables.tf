@@ -5,3 +5,5 @@ variable "bucket_region" {
 variable "airbyte_bucket_role" {
     default = "roles/storage.objectUser"
 }
+
+variable "project" { }
