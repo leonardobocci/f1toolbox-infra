@@ -21,7 +21,7 @@ provider "google" {
 module "storage" {
   source = "./modules/storage"
   project = var.project
-  airbyte_auth_service_account_email = module.auth.service_account_email
+  airbyte_auth_service_account_email = module.auth.airbyte_service_account_email
 }
 
 module "dataproc" {
