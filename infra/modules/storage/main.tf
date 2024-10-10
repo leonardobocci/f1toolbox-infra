@@ -27,7 +27,7 @@ resource "google_storage_bucket_iam_member" "airbyte_landing_bucket_access" {
   member = "serviceAccount:${var.airbyte_auth_service_account_email}"
 }
 
-resource "google_storage_bucket_iam_member" "airbyte_landing_bucket_access" {
+resource "google_storage_bucket_iam_member" "airbyte_bronze_bucket_access" {
   bucket = google_storage_bucket.bronze_files_layer.name
   role   = var.airbyte_bucket_role
   member = "serviceAccount:${var.airbyte_auth_service_account_email}"
