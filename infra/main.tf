@@ -24,10 +24,6 @@ module "storage" {
   airbyte_auth_service_account_email = module.auth.airbyte_service_account_email
 }
 
-module "dataproc" {
-  source = "./modules/dataproc"
-}
-
 module "gke" {
   source = "./modules/gke"
 }
