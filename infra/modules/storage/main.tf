@@ -1,5 +1,6 @@
 resource "google_project_service" "enable_storage" { 
     service = "storage-api.googleapis.com"
+    disable_on_destroy = false
 }
 
 resource "google_storage_bucket" "landing_files_layer" {
