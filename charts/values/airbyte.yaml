@@ -1,8 +1,20 @@
+#default values: https://github.com/airbytehq/airbyte-platform/blob/main/charts/airbyte/values.yaml
 global:
-  state:
-    storage:
-      type: "GCS"
+  auth:
+    cookieSecureSetting: "false"
+  secretsManager:
+    type: googleSecretManager
+    secretManagerSecretName: airbyte-config-secrets
+    googleSecretManager:
+      projectId: f1toolbox-core
+      credentialsSecretKey: gcp.json
   storage:
     type: "GCS"
-  minio:
-    enabled: false
+    storageSecretName: airbyte-config-secrets
+    bucket:
+      log: airbyte-state-bucket
+      state: airbyte-state-bucket
+      workloadOutput: airbyte-state-bucket
+    gcs:
+      projectId: f1toolbox-core
+      credentialsPath: /secrets/gcs-log-creds/gcp.json
