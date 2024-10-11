@@ -22,6 +22,8 @@ module "storage" {
   source = "./modules/storage"
   project = var.project
   airbyte_auth_service_account_email = module.auth.airbyte_service_account_email
+  terraform_service_account_email = var.terraform_service_account_email
+  project_user_gmail = var.project_user_gmail
 }
 
 module "secrets" {
