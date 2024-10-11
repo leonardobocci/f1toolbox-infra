@@ -8,4 +8,8 @@ variable "zone" {
 
 variable "project" { }	
 
+variable "terraform_service_account_email" { }
+
+variable "project_user_gmail" { }
+
 variable "GOOGLE_CREDENTIALS" { }
