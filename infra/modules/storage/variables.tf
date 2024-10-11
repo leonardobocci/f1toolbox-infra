@@ -4,4 +4,8 @@ variable "bucket_region" {
 
 variable "project" { }
 
+variable "terraform_service_account_email" { }
+
+variable "project_user_gmail" { }
+
 variable "airbyte_auth_service_account_email" {}

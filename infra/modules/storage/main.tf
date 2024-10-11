@@ -34,13 +34,13 @@ data "google_iam_policy" "bucket_admins" {
   binding {
     role = "roles/storage.admin"
     members = [
-      "serviceAccount:${var.airbyte_auth_service_account_email}",
+      "serviceAccount:${var.airbyte_auth_service_account_email}", "serviceAccount:${var.terraform_service_account_email}", "user:${var.project_user_gmail}"
     ]
   }
   binding {
     role = "roles/storage.objectCreator"
     members = [
-      "serviceAccount:${var.airbyte_auth_service_account_email}",
+      "serviceAccount:${var.airbyte_auth_service_account_email}", "serviceAccount:${var.terraform_service_account_email}", "user:${var.project_user_gmail}"
     ]
   }
 }
