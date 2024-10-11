@@ -14,3 +14,7 @@ Get started:
 - E. Terraform sensitive variable GOOGLE_CREDENTIALS with contents of json key
 - F. Terraform environment variable project set to GCP project name
 - G. Enable GCP required APIs (Service Usage API, Cloud Resource Manager API)
+
+#TODO:
+Create the required airbyte secrets for state storage and connector secret management
+Add ingress controller to cluster (nginx?)
