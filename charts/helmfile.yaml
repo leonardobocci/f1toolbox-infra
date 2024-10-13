@@ -5,16 +5,16 @@ repositories:
     url: https://airbytehq.github.io/helm-charts
 
 releases:
-  - name: airbyte
-    namespace: default
+  - name: f1toolbox-airbyte
+    namespace: f1toolbox-core
     chart: ./charts/airbyte
-    version: 0.49.1
+    version: 1.1.0
     values:
       - ./values/airbyte.yaml
 
-  - name: dagster
-    namespace: default
+  - name: f1toolbox-dagster
+    namespace: f1toolbox-core
     chart: ./charts/dagster
-    version: 1.14.16
+    version: 1.8.11
     values:
       - ./values/dagster.yaml
