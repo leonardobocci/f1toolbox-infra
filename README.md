@@ -18,3 +18,22 @@ Get started:
 #TODO:
 Create the required airbyte secrets for state storage and connector secret management
 Add ingress controller to cluster (nginx?)
+
+After terraform provisioning:
+- Connect to cluster with kubectl: \
+gcloud container clusters get-credentials f1toolbox-core --region us-central1 --project f1toolbox-core
+- Create a namespace: \
+kubectl create namespace f1toolbox-core
+- Update helm repos: \
+helm repo update
+- Create required k8s secrets: \
+kubectl apply -f secrets/airbyte_instance_secrets.yaml -n f1toolbox-core \
+kubectl apply -f secrets/airbyte_service_account.yaml -n f1toolbox-core
+- Helm install: \
+helm install f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/values/dagster.yaml \
+helm install f1toolbox-airbyte airbyte/airbyte --namespace=f1toolbox-core --values charts/values/airbyte.yaml
+
+Ingress to be added. For now connection is handled via port-forward: \
+kubectl port-forward service/f1toolbox-dagster-dagster-webserver 8081:80 -n f1toolbox-core
+
+kubectl port-forward service/f1toolbox-airbyte-airbyte-webapp-svc 8082:80 -n f1toolbox-core
