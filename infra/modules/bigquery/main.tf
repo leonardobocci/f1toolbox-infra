@@ -26,14 +26,14 @@ resource "google_bigquery_dataset" "f1toolbox_core_dataset" {
 
   access {
     role = "WRITER"
-    specialGroup = "projectWriters"
+    special_group = "projectWriters"
   }
   access {
     role = "OWNER"
-    specialGroup = "projectOwners"
+    special_group = "projectOwners"
   }
   access {
     role = "READER"
-    specialGroup = "projectReaders"
+    special_group = "projectReaders"
   }
 }
