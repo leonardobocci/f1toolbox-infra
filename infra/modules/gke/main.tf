@@ -9,21 +9,35 @@ resource "google_container_cluster" "primary" {
   name     = "f1toolbox-core-cluster"
   location = var.cluster_zone
 
-  # Node pool below - remove default one
+  # Node pool below - default one gets removed at startup
   remove_default_node_pool = true
   initial_node_count       = 1
+
+  cluster_autoscaling {
+    enabled = true
+    resource_limits {
+      resource_type = "cpu"
+      minimum = 1
+      maximum = 12
+    }
+    resource_limits {
+      resource_type = "memory"
+      minimum = 6
+      maximum = 32
+    }
+  }
+
+  vertical_pod_autoscaling = {
+    enabled = true
+  }
+
+  deletion_protection = false
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
   name       = "f1toolbox-core-node-pool"
   location   = var.cluster_zone
   cluster    = google_container_cluster.primary.name
-  node_count = 1
-
-  autoscaling {
-    min_node_count = 1
-    max_node_count = 5
-  }
 
   node_config {
     preemptible  = true

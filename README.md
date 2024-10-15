@@ -21,7 +21,7 @@ Add ingress controller to cluster (nginx?)
 
 After terraform provisioning:
 - Connect to cluster with kubectl: \
-gcloud container clusters get-credentials f1toolbox-core --region us-central1 --project f1toolbox-core
+gcloud container clusters get-credentials f1toolbox-core-cluster --zone us-central1-a --project f1toolbox-core
 - Create a namespace: \
 kubectl create namespace f1toolbox-core
 - Update helm repos: \
