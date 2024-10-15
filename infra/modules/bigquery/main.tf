@@ -29,7 +29,7 @@ resource "google_bigquery_dataset" "f1toolbox_core_dataset" {
   }
 }
 
-data "google_bigquery_dataset_iam_member" "bigquery_airbyte_admin" {
+resource "google_bigquery_dataset_iam_member" "bigquery_airbyte_admin" {
   dataset_id = google_bigquery_dataset.f1toolbox_core_dataset.dataset_id
   role       = "roles/bigquery.admin"
   member     = "serviceAccount:${var.airbyte_auth_service_account_email}"
