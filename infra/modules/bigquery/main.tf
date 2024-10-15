@@ -23,4 +23,19 @@ resource "google_bigquery_dataset" "f1toolbox_core_dataset" {
   description                 = "Core data for f1 toolbox"
   location                    = var.bigquery_location
   delete_contents_on_destroy = true
+
+  "access": [
+    {
+      "role": "WRITER",
+      "specialGroup": "projectWriters"
+    },
+    {
+      "role": "OWNER",
+      "specialGroup": "projectOwners"
+    },
+    {
+      "role": "READER",
+      "specialGroup": "projectReaders"
+    }
+  ]
 }
