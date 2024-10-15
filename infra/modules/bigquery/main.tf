@@ -25,17 +25,15 @@ resource "google_bigquery_dataset" "f1toolbox_core_dataset" {
   delete_contents_on_destroy = true
 
   access {
-    {
-      role = "WRITER"
-      specialGroup = "projectWriters"
-    },
-    {
-      role = "OWNER"
-      specialGroup = "projectOwners"
-    },
-    {
-      role = "READER"
-      specialGroup = "projectReaders"
-    }
+    role = "WRITER"
+    specialGroup = "projectWriters"
+  }
+  access {
+    role = "OWNER"
+    specialGroup = "projectOwners"
+  }
+  access {
+    role = "READER"
+    specialGroup = "projectReaders"
   }
 }
