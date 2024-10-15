@@ -24,18 +24,18 @@ resource "google_bigquery_dataset" "f1toolbox_core_dataset" {
   location                    = var.bigquery_location
   delete_contents_on_destroy = true
 
-  "access": [
+  access {
     {
-      "role": "WRITER",
-      "specialGroup": "projectWriters"
+      role = "WRITER"
+      specialGroup = "projectWriters"
     },
     {
-      "role": "OWNER",
-      "specialGroup": "projectOwners"
+      role = "OWNER"
+      specialGroup = "projectOwners"
     },
     {
-      "role": "READER",
-      "specialGroup": "projectReaders"
+      role = "READER"
+      specialGroup = "projectReaders"
     }
-  ]
+  }
 }
