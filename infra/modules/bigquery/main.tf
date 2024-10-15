@@ -28,6 +28,11 @@ resource "google_bigquery_dataset" "f1toolbox_core_dataset" {
     role = "WRITER"
     special_group = "projectWriters"
   }
+  #required explicit owner
+  access {
+    role = "OWNER"
+    user_by_email = var.terraform_service_account_email
+  }
   access {
     role = "OWNER"
     special_group = "projectOwners"
