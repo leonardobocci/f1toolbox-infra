@@ -27,7 +27,7 @@ resource "google_container_cluster" "primary" {
     }
   }
 
-  vertical_pod_autoscaling = {
+  vertical_pod_autoscaling {
     enabled = true
   }
 
