@@ -25,9 +25,7 @@ resource "google_container_cluster" "primary" {
       minimum = 6
       maximum = 32
     }
-    auto_provisioning_locations {
-      [ var.cluster_zone ]
-    }
+    auto_provisioning_locations = [ var.cluster_zone ]
   }
 
   vertical_pod_autoscaling {
