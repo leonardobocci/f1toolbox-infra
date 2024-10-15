@@ -21,6 +21,10 @@ resource "google_bigquery_dataset" "f1toolbox_core_dataset" {
   }
   access {
     role = "OWNER"
+    user_by_email = var.airbyte_auth_service_account_email
+  }
+  access {
+    role = "OWNER"
     special_group = "projectOwners"
   }
   access {
