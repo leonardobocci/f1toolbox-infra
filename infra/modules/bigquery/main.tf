@@ -29,14 +29,14 @@ resource "google_bigquery_dataset" "f1toolbox_core_dataset" {
   }
 }
 
-resource "google_bigquery_dataset_iam_member" "bigquery_airbyte_data_editor" {
-  dataset_id = google_bigquery_dataset.f1toolbox_core_dataset.dataset_id
-  role       = "roles/bigquery.dataEditor"
-  member     = "serviceAccount:${var.airbyte_auth_service_account_email}"
+resource "google_project_iam_member" "bigquery_airbyte_data_editor" {
+  project = var.project
+  role    = "roles/bigquery.dataEditor"
+  member  = "serviceAccount:${var.airbyte_auth_service_account_email}"
 }
 
-resource "google_bigquery_dataset_iam_member" "bigquery_airbyte_user" {
-  dataset_id = google_bigquery_dataset.f1toolbox_core_dataset.dataset_id
-  role       = "roles/bigquery.user"
-  member     = "serviceAccount:${var.airbyte_auth_service_account_email}"
+resource "google_project_iam_member" "bigquery_airbyte_data_editor" {
+  project = var.project
+  role    = "roles/bigquery.user"
+  member  = "serviceAccount:${var.airbyte_auth_service_account_email}"
 }
