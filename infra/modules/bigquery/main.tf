@@ -35,7 +35,7 @@ resource "google_project_iam_member" "bigquery_airbyte_data_editor" {
   member  = "serviceAccount:${var.airbyte_auth_service_account_email}"
 }
 
-resource "google_project_iam_member" "bigquery_airbyte_data_editor" {
+resource "google_project_iam_member" "bigquery_airbyte_user" {
   project = var.project
   role    = "roles/bigquery.user"
   member  = "serviceAccount:${var.airbyte_auth_service_account_email}"
