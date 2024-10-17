@@ -21,7 +21,8 @@ jobs:
       - name: Create Pull Request 
         uses: peter-evans/create-pull-request@v7.0.5
         with:
+          token: ${{ secrets.GH_ACTIONS_TOKEN }}
           commit-message: terraform fmt
           title: Reformat terraform files
           body: Update Terraform files to canonical format using `terraform fmt`
-          branch: main
+          branch: autoformatted_tf
