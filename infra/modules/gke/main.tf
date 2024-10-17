@@ -2,8 +2,8 @@
 
 data "google_client_config" "current" {}
 
-resource "google_project_service" "enable_gke" { 
-  service = "container.googleapis.com"
+resource "google_project_service" "enable_gke" {
+  service            = "container.googleapis.com"
   disable_on_destroy = false
 }
 
@@ -19,15 +19,15 @@ resource "google_container_cluster" "primary" {
     enabled = true
     resource_limits {
       resource_type = "cpu"
-      minimum = 1
-      maximum = 12
+      minimum       = 1
+      maximum       = 12
     }
     resource_limits {
       resource_type = "memory"
-      minimum = 6
-      maximum = 32
+      minimum       = 6
+      maximum       = 32
     }
-    auto_provisioning_locations = [ var.cluster_zone ]
+    auto_provisioning_locations = [var.cluster_zone]
   }
 
   vertical_pod_autoscaling {
@@ -35,28 +35,28 @@ resource "google_container_cluster" "primary" {
   }
 
   workload_identity_config {
-      workload_pool = "${data.google_client_config.current.project}.svc.id.goog"
-    }
+    workload_pool = "${data.google_client_config.current.project}.svc.id.goog"
+  }
 
   deletion_protection = false
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
-  name       = "f1toolbox-core-node-pool"
-  location   = var.cluster_zone
-  cluster    = google_container_cluster.primary.name
+  name     = "f1toolbox-core-node-pool"
+  location = var.cluster_zone
+  cluster  = google_container_cluster.primary.name
 
   node_config {
     preemptible  = true
     machine_type = "e2-medium"
     disk_size_gb = 45
 
-    oauth_scopes    = [
+    oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
 
     workload_metadata_config {
-        mode = "GKE_METADATA"
-      }
+      mode = "GKE_METADATA"
+    }
   }
 }
