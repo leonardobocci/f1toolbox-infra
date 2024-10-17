@@ -6,10 +6,10 @@ variable "zone" {
   default = "us-central1-c"
 }
 
-variable "project" { }	
+variable "project" {}
 
-variable "terraform_service_account_email" { }
+variable "terraform_service_account_email" {}
 
-variable "project_user_gmail" { }
+variable "project_user_gmail" {}
 
-variable "GOOGLE_CREDENTIALS" { }
+variable "GOOGLE_CREDENTIALS" {}

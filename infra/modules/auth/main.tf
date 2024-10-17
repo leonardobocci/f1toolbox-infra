@@ -1,5 +1,5 @@
 resource "google_project_service" "enable_iam" {
-  service = "iam.googleapis.com"
+  service            = "iam.googleapis.com"
   disable_on_destroy = false
 }
 
