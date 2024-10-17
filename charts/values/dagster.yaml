@@ -1,3 +1,4 @@
+#https://github.com/dagster-io/dagster/blob/master/helm/dagster/charts/dagster-user-deployments/values.yaml
 dagster-user-deployments:
   enabled: true
   deployments:
@@ -10,3 +11,7 @@ dagster-user-deployments:
         - "-f"
         - "/app/src/dagster/definitions.py"
       port: 8081
+      serviceAccount:
+        create: false
+        name: dagster-ksa
+        namespace: f1toolbox-core
