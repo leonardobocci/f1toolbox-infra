@@ -29,9 +29,6 @@ helm repo update
 - Create required k8s secrets: \
 kubectl apply -f secrets/airbyte_instance_secrets.yaml -n f1toolbox-core \
 kubectl apply -f secrets/airbyte_service_account.yaml -n f1toolbox-core
-- Helm install: \
-helm install f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/values/dagster.yaml \
-helm install f1toolbox-airbyte airbyte/airbyte --namespace=f1toolbox-core --values charts/values/airbyte.yaml
 
 Authentication to GCP APIs via workflow identity federation: \
 A k8s service account will impersonate a GCP IAM-handled service account to gain access to protected resources like cloud storage via IAM role assignment. \
@@ -45,6 +42,10 @@ Can be achieved by running kubectl commands: \
 - kubectl annotate serviceaccount dagster-ksa \
     --namespace f1toolbox-core \
     iam.gke.io/gcp-service-account=gke-workflow-identity@f1toolbox-core.iam.gserviceaccount.com
+
+Helm install: \
+helm install f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/values/dagster.yaml \
+helm install f1toolbox-airbyte airbyte/airbyte --namespace=f1toolbox-core --values charts/values/airbyte.yaml
 
 Ingress to be added. For now connection is handled via port-forward: \
 kubectl port-forward service/f1toolbox-dagster-dagster-webserver 8081:80 -n f1toolbox-core
