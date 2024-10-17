@@ -12,7 +12,7 @@ resource "google_service_account" "airbyte_service_account" {
 }
 
 resource "google_service_account" "workload_identity_gke_service_account" {
-  account_id   = "gke_workflow_id"
+  account_id   = "gke-workflow-identity"
   display_name = "Service Account For Workload Identity"
 
   depends_on = [google_project_service.enable_iam]
