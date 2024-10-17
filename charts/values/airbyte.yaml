@@ -1,6 +1,7 @@
 #default values: https://github.com/airbytehq/airbyte-platform/blob/main/charts/airbyte/values.yaml
 global:
   auth:
+    enabled: true
     cookieSecureSetting: "false"
   secretsManager:
     type: googleSecretManager
