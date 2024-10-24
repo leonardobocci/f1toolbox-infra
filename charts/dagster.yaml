@@ -11,7 +11,7 @@ dagster-user-deployments:
         - "-f"
         - "/app/src/dagster/definitions.py"
       port: 8081
-      serviceAccount:
-        create: false
-        name: dagster-ksa
-        namespace: f1toolbox-core
+  serviceAccount:
+    create: false
+    name: dagster-ksa
+    namespace: f1toolbox-core
