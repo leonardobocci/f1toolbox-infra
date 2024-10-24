@@ -44,10 +44,13 @@ Can be achieved by running kubectl commands: \
     iam.gke.io/gcp-service-account=gke-workflow-identity@f1toolbox-core.iam.gserviceaccount.com
 
 Helm install: \
-helm install f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/values/dagster.yaml \
-helm install f1toolbox-airbyte airbyte/airbyte --namespace=f1toolbox-core --values charts/values/airbyte.yaml
+helm install f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/dagster.yaml \
+helm install f1toolbox-airbyte airbyte/airbyte --namespace=f1toolbox-core --values charts/airbyte.yaml
 
 Ingress to be added. For now connection is handled via port-forward: \
 kubectl port-forward service/f1toolbox-dagster-dagster-webserver 8081:80 -n f1toolbox-core
 
 kubectl port-forward service/f1toolbox-airbyte-airbyte-webapp-svc 8082:80 -n f1toolbox-core
+
+Helm install new versions:
+helm upgrade f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/dagster.yaml
