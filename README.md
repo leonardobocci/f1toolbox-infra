@@ -54,3 +54,6 @@ kubectl port-forward service/f1toolbox-airbyte-airbyte-webapp-svc 8082:80 -n f1t
 
 Helm install new versions:
 helm upgrade f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/dagster.yaml
+
+To add a specific user deployment tag (eg. when latest does not pull a fresh one):
+helm upgrade f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/dagster.yaml --set dagster-user-deployments.deployments[0].image.tag=<DOCKERHUB_TAG>

@@ -1,14 +1,22 @@
 #https://github.com/dagster-io/dagster/blob/master/helm/dagster/values.yaml
 dagsterDaemon:
-  run_monitoring:
-  enabled: true
-  maxResumeRunAttempts: 2 
-    # Max number of times to attempt to resume a run with a new run worker instead
-    # of failing the run if the run worker has crashed. Only works for runs using the
-    # `k8s_job_executor` to run each op in its own Kubernetes job.
-  run_retries:
+  runCoordinator:
     enabled: true
-    max_retries: 2
+    type: QueuedRunCoordinator
+    config:
+      queuedRunCoordinator:
+        blockOpConcurrencyLimitedRuns:
+          enabled: true
+          opConcurrencySlotBuffer: 0
+  runMonitoring:
+    enabled: true
+    maxResumeRunAttempts: 2
+  # Max number of times to attempt to resume a run with a new run worker instead
+  # of failing the run if the run worker has crashed. Only works for runs using the
+  # `k8s_job_executor` to run each op in its own Kubernetes job.
+  runRetries:
+    enabled: true
+    maxRetries: 2
 retention:
   enabled: true
   schedule:
@@ -29,27 +37,28 @@ runLauncher:
   type: K8sRunLauncher
   config:
     k8sRunLauncher:
+      jobNamespace: "f1toolbox-core"
       runK8sConfig:
         containerConfig:
           resources:
             limits:
-              cpu: 2000m
-              memory: 20480Mi
+              cpu: 2000m #2 cores
+              memory: 20480Mi #20GB
         podTemplateSpecMetadata:
           annotations:
             cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 dagster-user-deployments:
   enabled: true
   deployments:
-    - name: "f1toolbox-core"
-      image:
-        repository: "leobocci/f1toolbox-dagster"
-        tag: latest
-        pullPolicy: Always
-      dagsterApiGrpcArgs:
-        - "-f"
-        - "/app/src/dagster/definitions.py"
-      port: 8081
+  - name: "f1toolbox-core"
+    image:
+      repository: "leobocci/f1toolbox-dagster"
+      tag: latest
+      pullPolicy: Always
+    dagsterApiGrpcArgs:
+    - "-f"
+    - "/app/src/dagster/definitions.py"
+    port: 8081
   serviceAccount:
     create: false
     name: dagster-ksa
