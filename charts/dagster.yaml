@@ -1,4 +1,30 @@
-#https://github.com/dagster-io/dagster/blob/master/helm/dagster/charts/dagster-user-deployments/values.yaml
+#https://github.com/dagster-io/dagster/blob/master/helm/dagster/values.yaml
+dagsterDaemon:
+  run_monitoring:
+  enabled: true
+  maxResumeRunAttempts: 2 
+    # Max number of times to attempt to resume a run with a new run worker instead
+    # of failing the run if the run worker has crashed. Only works for runs using the
+    # `k8s_job_executor` to run each op in its own Kubernetes job.
+  run_retries:
+    enabled: true
+    max_retries: 2
+retention:
+  enabled: true
+  schedule:
+    purgeAfterDays: -1
+  sensor:
+    purgeAfterDays:
+      failure: 30
+      skipped: 3
+      started: -1
+      success: -1
+  autoMaterialize:
+    purgeAfterDays:
+      failure: 30
+      skipped: 3
+      started: -1
+      success: -1
 dagster-user-deployments:
   enabled: true
   deployments:
