@@ -25,6 +25,19 @@ retention:
       skipped: 3
       started: -1
       success: -1
+runLauncher:
+  type: K8sRunLauncher
+  config:
+    k8sRunLauncher:
+      runK8sConfig:
+        containerConfig:
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 20480Mi
+        podTemplateSpecMetadata:
+          annotations:
+            cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 dagster-user-deployments:
   enabled: true
   deployments:
