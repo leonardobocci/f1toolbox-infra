@@ -9,6 +9,9 @@ resource "google_storage_bucket" "airbyte_state_bucket" {
   project       = var.project
   force_destroy = true
 
+  uniform_bucket_level_access = true
+  public_access_prevention = "enforced"
+  
   depends_on = [google_project_service.enable_storage]
 }
 
@@ -18,6 +21,9 @@ resource "google_storage_bucket" "landing_files_layer" {
   project       = var.project
   force_destroy = true
 
+  uniform_bucket_level_access = true
+  public_access_prevention = "enforced"
+
   depends_on = [google_project_service.enable_storage]
 }
 
@@ -26,6 +32,9 @@ resource "google_storage_bucket" "bronze_files_layer" {
   location      = var.bucket_region
   project       = var.project
   force_destroy = true
+
+  uniform_bucket_level_access = true
+  public_access_prevention = "enforced"
 
   depends_on = [google_project_service.enable_storage]
 }

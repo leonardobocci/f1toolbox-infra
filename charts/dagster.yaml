@@ -5,6 +5,7 @@ dagsterDaemon:
     type: QueuedRunCoordinator
     config:
       queuedRunCoordinator:
+        maxConcurrentRuns: 10
         blockOpConcurrencyLimitedRuns:
           enabled: true
           opConcurrencySlotBuffer: 0
@@ -16,7 +17,7 @@ dagsterDaemon:
   # `k8s_job_executor` to run each op in its own Kubernetes job.
   runRetries:
     enabled: true
-    maxRetries: 2
+    maxRetries: 0 #2
 retention:
   enabled: true
   schedule:
@@ -39,11 +40,11 @@ runLauncher:
     k8sRunLauncher:
       jobNamespace: "f1toolbox-core"
       runK8sConfig:
-        containerConfig:
-          resources:
-            limits:
-              cpu: 2000m #2 cores
-              memory: 20480Mi #20GB
+        #containerConfig:
+        # resources:
+        #  limits:
+        #    cpu: 2000m #2 cores
+        #    memory: 20480Mi #20GB
         podTemplateSpecMetadata:
           annotations:
             cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
