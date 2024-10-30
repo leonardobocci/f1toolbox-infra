@@ -19,13 +19,13 @@ resource "google_container_cluster" "primary" {
     enabled = true
     resource_limits {
       resource_type = "cpu"
-      minimum       = 1
-      maximum       = 16
+      minimum       = 2
+      maximum       = 32
     }
     resource_limits {
       resource_type = "memory"
-      minimum       = 4
-      maximum       = 64
+      minimum       = 8
+      maximum       = 128
     }
     auto_provisioning_locations = [var.cluster_zone]
   }

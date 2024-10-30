@@ -59,7 +59,7 @@ dagster-user-deployments:
     dagsterApiGrpcArgs:
     - "-f"
     - "/app/src/dagster/definitions.py"
-    port: 8081
+    port: 3030
   serviceAccount:
     create: false
     name: dagster-ksa
