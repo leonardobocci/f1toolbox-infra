@@ -49,7 +49,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   node_config {
     spot  = true
     machine_type = "e2-medium"
-    disk_size_gb = 45
+    disk_size_gb = 35
 
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"

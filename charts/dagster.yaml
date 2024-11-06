@@ -1,4 +1,8 @@
 #https://github.com/dagster-io/dagster/blob/master/helm/dagster/values.yaml
+dagsterWebserver:
+  readinessProbe:
+    periodSeconds: 60
+    timeoutSeconds: 50
 dagsterDaemon:
   runCoordinator:
     enabled: true
@@ -11,13 +15,13 @@ dagsterDaemon:
           opConcurrencySlotBuffer: 0
   runMonitoring:
     enabled: true
-    maxResumeRunAttempts: 2
+    maxResumeRunAttempts: 4
   # Max number of times to attempt to resume a run with a new run worker instead
   # of failing the run if the run worker has crashed. Only works for runs using the
   # `k8s_job_executor` to run each op in its own Kubernetes job.
   runRetries:
     enabled: true
-    maxRetries: 0 #2
+    maxRetries: 2
 retention:
   enabled: true
   schedule:
@@ -40,11 +44,14 @@ runLauncher:
     k8sRunLauncher:
       jobNamespace: "f1toolbox-core"
       runK8sConfig:
-        #containerConfig:
-        # resources:
-        #  limits:
-        #    cpu: 2000m #2 cores
-        #    memory: 20480Mi #20GB
+        containerConfig:
+          resources:
+            limits:
+              cpu: 4000m #4 cores
+              memory: 40960Mi #40GB
+            requests:
+              cpu: 500m #0.5 core
+              memory: 2048Mi #2GB
         podTemplateSpecMetadata:
           annotations:
             cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
