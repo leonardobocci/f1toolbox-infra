@@ -3,6 +3,9 @@ global:
   auth:
     enabled: true
     cookieSecureSetting: "false"
+  server:
+    livenessProbe:
+      initialDelaySeconds: 90
   secretsManager:
     type: googleSecretManager
     secretManagerSecretName: airbyte-config-secrets
