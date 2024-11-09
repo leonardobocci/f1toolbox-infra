@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-resource
+  namespace: f1toolbox-core
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "dagster.104.154.59.130.nip.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: f1toolbox-dagster-dagster-webserver-read-only
+            port:
+              number: 80
+  - host: "airbyte.104.154.59.130.nip.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            # format is ${RELEASE_NAME}-airbyte-webapp-svc
+            name: f1toolbox-airbyte-airbyte-webapp-svc
+            port:
+              number: 80 # service port, example: 8080

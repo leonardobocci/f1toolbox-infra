@@ -6,6 +6,7 @@ global:
   server:
     livenessProbe:
       initialDelaySeconds: 90
+  airbyteUrl: "airbyte.104.154.59.130.nip.io"
   secretsManager:
     type: googleSecretManager
     secretManagerSecretName: airbyte-config-secrets
