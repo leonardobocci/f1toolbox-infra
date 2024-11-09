@@ -53,7 +53,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   cluster  = google_container_cluster.primary.name
 
   node_config {
-    spot  = true
+    spot         = true
     machine_type = "e2-medium"
     disk_size_gb = 35
 
