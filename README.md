@@ -15,10 +15,6 @@ Get started:
 - F. Terraform environment variable project set to GCP project name
 - G. Enable GCP required APIs (Service Usage API, Cloud Resource Manager API)
 
-#TODO:
-Create the required airbyte secrets for state storage and connector secret management
-Add ingress controller to cluster (nginx?)
-
 After terraform provisioning:
 - Connect to cluster with kubectl: \
 gcloud container clusters get-credentials f1toolbox-core-cluster --zone us-central1-c --project f1toolbox-core
@@ -42,13 +38,33 @@ Helm install: \
 helm install f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/dagster.yaml \
 helm install f1toolbox-airbyte airbyte/airbyte --namespace=f1toolbox-core --values charts/airbyte.yaml
 
-Ingress to be added. For now connection is handled via port-forward: \
-kubectl port-forward service/f1toolbox-dagster-dagster-webserver 3030:80 -n f1toolbox-core
-
+Test service availability via port-forward: \
+kubectl port-forward service/f1toolbox-dagster-dagster-webserver 8081:80 -n f1toolbox-core
 kubectl port-forward service/f1toolbox-airbyte-airbyte-webapp-svc 8082:80 -n f1toolbox-core
 
 Helm install new versions:
 helm upgrade f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/dagster.yaml
+helm upgrade f1toolbox-airbyte airbyte/airbyte --namespace=f1toolbox-core --values charts/airbyte.yaml
 
-To add a specific user deployment tag (eg. when latest does not pull a fresh one):
+To add a specific dagster user deployment tag (eg. when latest does not pull a fresh one):
 helm upgrade f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/dagster.yaml --set dagster-user-deployments.deployments[0].image.tag=<DOCKERHUB_TAG>
+
+Ingress setup:
+https://github.com/GoogleCloudPlatform/community/blob/master/archived/nginx-ingress-gke/index.md
+
+1. Create nginx ingress controller (after disabling load balancer addon on gke):
+```
+#terraform for gke cluster
+addons-config {
+    http_load_balancing {
+      disabled = true
+    }
+  }
+
+#terminal
+helm upgrade --install ingress-nginx ingress-nginx   --repo https://kubernetes.github.io/ingress-nginx   --namespace ingress-nginx --create-namespace
+```
+2. Add ingress resource with multiple rules:
+```
+kubectl apply -f gke_ingress/resource.yaml -n f1toolbox-core
+```

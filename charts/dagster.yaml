@@ -3,6 +3,7 @@ dagsterWebserver:
   readinessProbe:
     periodSeconds: 60
     timeoutSeconds: 50
+  enableReadOnly: true
 dagsterDaemon:
   runCoordinator:
     enabled: true
