@@ -38,7 +38,7 @@ resource "google_container_cluster" "primary" {
     workload_pool = "${data.google_client_config.current.project}.svc.id.goog"
   }
 
-  addons-config {
+  addons_config {
     http_load_balancing {
       disabled = true
     }

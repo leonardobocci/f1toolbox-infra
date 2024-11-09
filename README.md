@@ -55,7 +55,7 @@ https://github.com/GoogleCloudPlatform/community/blob/master/archived/nginx-ingr
 1. Create nginx ingress controller (after disabling load balancer addon on gke):
 ```
 #terraform for gke cluster
-addons-config {
+addons_config {
     http_load_balancing {
       disabled = true
     }
