@@ -6,6 +6,14 @@ global:
   server:
     livenessProbe:
       initialDelaySeconds: 90
+  jobs:
+    resources:
+      limits:
+        cpu: 4000m
+        memory: 64Gi
+      requests:
+        cpu: 500m
+        memory: 4Gi
   airbyteUrl: "airbyte.104.154.59.130.nip.io"
   secretsManager:
     type: googleSecretManager

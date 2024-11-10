@@ -51,12 +51,12 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   name     = "f1toolbox-core-node-pool"
   location = var.cluster_zone
   cluster  = google_container_cluster.primary.name
-  initial_node_count = 1
+  initial_node_count = 3
 
   node_config {
     spot         = true
     machine_type = "c3-standard-4"
-    disk_size_gb = 35
+    disk_size_gb = 30
 
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
@@ -65,6 +65,11 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     workload_metadata_config {
       mode = "GKE_METADATA"
     }
+  }
+
+  autoscaling {
+    total_min_node_count = 1
+    total_max_node_count  = 8 
   }
 
   upgrade_settings {
