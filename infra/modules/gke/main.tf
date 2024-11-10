@@ -20,12 +20,12 @@ resource "google_container_cluster" "primary" {
     resource_limits {
       resource_type = "cpu"
       minimum       = 4
-      maximum       = 32
+      maximum       = 24
     }
     resource_limits {
       resource_type = "memory"
-      minimum       = 12
-      maximum       = 128
+      minimum       = 16
+      maximum       = 96
     }
     auto_provisioning_locations = [var.cluster_zone]
   }
@@ -54,7 +54,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
 
   node_config {
     spot         = true
-    machine_type = "e2-medium"
+    machine_type = "c3-standard-4"
     disk_size_gb = 35
 
     oauth_scopes = [
