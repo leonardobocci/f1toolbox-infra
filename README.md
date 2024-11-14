@@ -68,3 +68,13 @@ helm upgrade --install ingress-nginx ingress-nginx   --repo https://kubernetes.g
 ```
 kubectl apply -f gke_ingress/resource.yaml -n f1toolbox-core
 ```
+3. Add protected ingress resource (dagster doesn't have native auth):
+First, create an encrypted password and add it as a k8s secret:
+```
+htpasswd -c auth <USERNAME>
+kubectl create secret generic basic-auth --from-file=auth -n f1toolbox-core
+```
+Then create the ingress resource requiring authentication with basic credentials
+```
+kubectl apply -f gke_ingress/protected_resource.yaml -n f1toolbox-core
+```

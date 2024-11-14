@@ -161,3 +161,4 @@ cython_debug/
 
 secrets/airbyte_instance_secrets.yaml
 secrets/airbyte_service_account.yaml
+auth
