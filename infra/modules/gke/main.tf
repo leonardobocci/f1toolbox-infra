@@ -1,5 +1,5 @@
 #https://registry.terraform.io/providers/hashicorp/google/6.7.0/docs/resources/container_cluster
-
+#TODO: NODE AUTO PROVISIONING IS CREATING ITS OWN NODE POOL INSTEAD OF USING THE ONE BELOW
 data "google_client_config" "current" {}
 
 resource "google_project_service" "enable_gke" {

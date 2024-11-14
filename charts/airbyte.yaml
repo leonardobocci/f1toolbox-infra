@@ -9,11 +9,11 @@ global:
   jobs:
     resources:
       limits:
-        cpu: 4000m
+        cpu: 16000m
         memory: 64Gi
       requests:
-        cpu: 500m
-        memory: 4Gi
+        cpu: 1000m
+        memory: 8Gi
   airbyteUrl: "airbyte.104.154.59.130.nip.io"
   secretsManager:
     type: googleSecretManager

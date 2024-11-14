@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: "dagster.104.154.59.130.nip.io"
+  - host: "dagster.f1toolbox.com"
     http:
       paths:
       - pathType: Prefix
@@ -18,7 +18,7 @@ spec:
             name: f1toolbox-dagster-dagster-webserver-read-only
             port:
               number: 80
-  - host: "airbyte.104.154.59.130.nip.io"
+  - host: "airbyte.f1toolbox.com"
     http:
       paths:
       - pathType: Prefix

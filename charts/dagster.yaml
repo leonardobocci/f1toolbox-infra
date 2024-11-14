@@ -68,6 +68,9 @@ dagster-user-deployments:
     - "-f"
     - "/app/src/dagster/definitions.py"
     port: 3030
+    envSecrets:
+    - name: "airbyte-auth-secrets"
+    - name: "airbyte-username"
   serviceAccount:
     create: false
     name: dagster-ksa
