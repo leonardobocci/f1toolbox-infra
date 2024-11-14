@@ -12,8 +12,8 @@ global:
         cpu: 16000m
         memory: 64Gi
       requests:
-        cpu: 1000m
-        memory: 8Gi
+        cpu: 500m
+        memory: 2Gi
   airbyteUrl: "airbyte.104.154.59.130.nip.io"
   secretsManager:
     type: googleSecretManager

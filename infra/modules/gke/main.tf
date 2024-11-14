@@ -69,11 +69,11 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
 
   autoscaling {
     total_min_node_count = 1
-    total_max_node_count  = 8 
+    total_max_node_count  = 1
   }
 
   upgrade_settings {
-    max_surge  = 2
+    max_surge  = 1
     max_unavailable = 0
   }
 }
