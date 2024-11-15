@@ -40,3 +40,15 @@ resource "google_project_iam_member" "bigquery_airbyte_user" {
   role    = "roles/bigquery.user"
   member  = "serviceAccount:${var.airbyte_auth_service_account_email}"
 }
+
+resource "google_project_iam_member" "bigquery_dagster_dbt_data_editor" {
+  project = var.project
+  role    = "roles/bigquery.dataEditor"
+  member  = "serviceAccount:${var.workload_identity_gke_service_account_email}"
+}
+
+resource "google_project_iam_member" "bigquery_dagster_dbt_user" {
+  project = var.project
+  role    = "roles/bigquery.user"
+  member  = "serviceAccount:${var.workload_identity_gke_service_account_email}"
+}

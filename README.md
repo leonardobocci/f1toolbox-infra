@@ -72,7 +72,7 @@ kubectl apply -f gke_ingress/resource.yaml -n f1toolbox-core
 First, create an encrypted password and add it as a k8s secret:
 ```
 htpasswd -c auth <USERNAME>
-kubectl create secret generic basic-auth --from-file=auth -n f1toolbox-core
+kubectl create secret generic dagster-ui-password --from-file=auth -n f1toolbox-core
 ```
 Then create the ingress resource requiring authentication with basic credentials
 ```
