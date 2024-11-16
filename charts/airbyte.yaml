@@ -14,7 +14,6 @@ global:
       requests:
         cpu: 500m
         memory: 4Gi
-  airbyteUrl: "airbyte.104.154.59.130.nip.io"
   secretsManager:
     type: googleSecretManager
     secretManagerSecretName: airbyte-config-secrets
