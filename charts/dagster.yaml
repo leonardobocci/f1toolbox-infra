@@ -22,7 +22,7 @@ dagsterDaemon:
   # `k8s_job_executor` to run each op in its own Kubernetes job.
   runRetries:
     enabled: true
-    maxRetries: 2
+    maxRetries: 1
 retention:
   enabled: true
   schedule:
