@@ -52,3 +52,9 @@ resource "google_project_iam_member" "bigquery_dagster_dbt_user" {
   role    = "roles/bigquery.user"
   member  = "serviceAccount:${var.workload_identity_gke_service_account_email}"
 }
+
+resource "google_project_iam_member" "bigquery_metabase_data_viewer" {
+  project = var.project
+  role    = "roles/bigquery.dataViewer"
+  member  = "serviceAccount:${var.metabase_auth_service_account_email}"
+}

@@ -8,6 +8,16 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+  - host: "metabase.f1toolbox.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: f1toolbox-metabase
+            port:
+              number: 80
   - host: "dagster.f1toolbox.com"
     http:
       paths:
