@@ -42,7 +42,7 @@ module "bigquery" {
   source                             = "./modules/bigquery"
   project                            = var.project
   airbyte_auth_service_account_email = module.auth.airbyte_service_account_email
-  metabase_service_account_email = module.auth.metabase_service_account_email
+  metabase_auth_service_account_email = module.auth.metabase_service_account_email
   workload_identity_gke_service_account_email = module.auth.workload_identity_gke_service_account_email
   terraform_service_account_email    = var.terraform_service_account_email
 }
