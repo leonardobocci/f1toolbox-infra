@@ -58,3 +58,15 @@ resource "google_project_iam_member" "bigquery_metabase_data_viewer" {
   role    = "roles/bigquery.dataViewer"
   member  = "serviceAccount:${var.metabase_auth_service_account_email}"
 }
+
+resource "google_project_iam_member" "bigquery_metabase_metadata_viewer" {
+  project = var.project
+  role    = "roles/bigquery.metadataViewer"
+  member  = "serviceAccount:${var.metabase_auth_service_account_email}"
+}
+
+resource "google_project_iam_member" "bigquery_metabase_job_user" {
+  project = var.project
+  role    = "roles/bigquery.jobUser"
+  member  = "serviceAccount:${var.metabase_auth_service_account_email}"
+}
