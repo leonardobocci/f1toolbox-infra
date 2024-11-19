@@ -36,7 +36,9 @@ Can be achieved by running kubectl commands: \
 
 Helm install: \
 helm install f1toolbox-dagster dagster/dagster --namespace=f1toolbox-core --values charts/dagster.yaml \
-helm install f1toolbox-airbyte airbyte/airbyte --namespace=f1toolbox-core --values charts/airbyte.yaml
+helm install f1toolbox-airbyte airbyte/airbyte --namespace=f1toolbox-core --values charts/airbyte.yaml \
+helm install metabase-operator metabase-operator-charts/metabase-operator -n f1toolbox-core \
+kubectl apply -f charts/metabase.yaml -n f1toolbox-core
 
 Test service availability via port-forward: \
 kubectl port-forward service/f1toolbox-dagster-dagster-webserver 8081:80 -n f1toolbox-core

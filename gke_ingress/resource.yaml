@@ -15,9 +15,9 @@ spec:
         path: "/"
         backend:
           service:
-            name: f1toolbox-metabase
+            name: f1toolbox-metabase-http
             port:
-              number: 80
+              number: 3000
   - host: "dagster.f1toolbox.com"
     http:
       paths:
@@ -38,4 +38,4 @@ spec:
             # format is ${RELEASE_NAME}-airbyte-webapp-svc
             name: f1toolbox-airbyte-airbyte-webapp-svc
             port:
-              number: 80 # service port, example: 8080
+              number: 80
