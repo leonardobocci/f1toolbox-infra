@@ -48,9 +48,9 @@ resource "google_container_cluster" "primary" {
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
-  name     = "f1toolbox-core-node-pool"
-  location = var.cluster_zone
-  cluster  = google_container_cluster.primary.name
+  name               = "f1toolbox-core-node-pool"
+  location           = var.cluster_zone
+  cluster            = google_container_cluster.primary.name
   initial_node_count = 1
 
   node_config {
@@ -69,11 +69,11 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
 
   autoscaling {
     total_min_node_count = 1
-    total_max_node_count  = 1
+    total_max_node_count = 1
   }
 
   upgrade_settings {
-    max_surge  = 1
+    max_surge       = 1
     max_unavailable = 0
   }
 }
